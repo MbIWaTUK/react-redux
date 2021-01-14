@@ -5,8 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from "./redux-store"
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import store from "./redux/redux-store"
+import { BrowserRouter } from "react-router-dom";
 import StoreContext from './storeContext';
 import { Provider } from "react-redux"
 
