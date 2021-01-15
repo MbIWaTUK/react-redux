@@ -3,7 +3,7 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { connect } from "react-redux";
-import { changeProfileInfo, handleAddPostActionCreate, handleChangeMessageActionCreate, getUserProfileThunkCreator } from "../../redux/profileReducer";
+import { changeProfileInfo, handleAddPostActionCreate, handleChangeMessageActionCreate, getUserProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator } from "../../redux/profileReducer";
 import { compose } from "redux";
 
 class ProfileContainerAPI extends React.Component {
@@ -15,6 +15,7 @@ class ProfileContainerAPI extends React.Component {
       userId = 2
     }
     this.props.getUserProfileThunkCreator(userId)
+    this.props.getStatus(userId)
   }
   render() {
     
@@ -24,32 +25,21 @@ class ProfileContainerAPI extends React.Component {
   }
 }
 
-
-// let AuthRedirectComponent = WithAuthRedirect(ProfileContainerAPI)
-
-
 let mapStateToProps = (state) => {
   return {
     profilePage: state.profilePage,
+    status: state.profilePage.status,
   }
 }
-// let WithUrlContainerContainerComponent = withRouter(AuthRedirectComponent)
-
-// const ProfileContainer = connect(mapStateToProps, {
-//   updateText: handleChangeMessageActionCreate,
-//   addPost: handleAddPostActionCreate,
-//   setUserProfile: changeProfileInfo,
-//   getUserProfileThunkCreator
-// })(WithUrlContainerContainerComponent)
-
 
 export default compose(
   connect(mapStateToProps, {
-    updateText: handleChangeMessageActionCreate,
     addPost: handleAddPostActionCreate,
     setUserProfile: changeProfileInfo,
-    getUserProfileThunkCreator
+    getUserProfileThunkCreator,
+    getStatus:getStatusThunkCreator,
+    updateStatus:updateStatusThunkCreator
   }),
   withRouter,
-  WithAuthRedirect
+  // WithAuthRedirect
 )(ProfileContainerAPI)

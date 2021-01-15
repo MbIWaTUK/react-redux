@@ -9,19 +9,15 @@ import HeadedrContainer from "./components/header/HeaderContainer";
 import LoginContainer from "./components/login/LoginContainer";
 import DialogsContainer from "./components/dialogs/DialogsContainer"
 
-function App({ store, state, dispatch }) {
+function App() {
   return (
     <div>
       <HeadedrContainer />
       <Navbar />
-      {/* <Route path="/dialogs" component={Dialogs} /> */}
       <Route
         path="/profile/:userId"
         render={() => (
-          <ProfileContainer
-          // store={store}
-          // dispatch={dispatch}
-          />
+          <ProfileContainer/>
         )}
       />
       <Route path="/users" render={() => <UsersListContainer />} />
