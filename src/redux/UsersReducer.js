@@ -97,7 +97,7 @@ export const setFollowButtonDisabledActionCreate = (isFetching, userId) => ({
 export const getUsersThunkCreator=(currentPage,pageSize)=>{
   return (dispatch) => {
     dispatch(setIsFetchingActionCreate(true))
-
+    dispatch(setCurrentPageActionCreate(currentPage))
       userAPI
         .getUsers(currentPage, pageSize)
         .then((res) => {

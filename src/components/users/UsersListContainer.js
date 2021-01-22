@@ -8,16 +8,17 @@ import {
   followThunkCreator,
   unFollowThunkCreator
 } from "../../redux/UsersReducer";
+import { getCurrentPage, getFollowButtonDisabled, getIsFetching, getPageSize, getTotalUserCount, getUsers, getUsersSelector } from "../../redux/UsersSelectors";
 import UsersListClassComponentAPI from "./UserListClassComponentAPI";
 
 let mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUserCount: state.usersPage.totalUserCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followButtonDisabled: state.usersPage.followButtonDisabled,
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUserCount: getTotalUserCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followButtonDisabled: getFollowButtonDisabled(state),
   };
 };
 
@@ -47,10 +48,7 @@ let mapStateToProps = (state) => {
 const UsersListContainer = connect(mapStateToProps, {
   follow: handleFollowActionCreate,
   unfollow: handleUnFollowActionCreate,
-  // setUsers: setUsersActionCreate,
   setCurrentPage: setCurrentPageActionCreate,
-  // setTotalUserCount: setTotalUserCountActionCreate,
-  // setIsFetching: setIsFetchingActionCreate,
   setFollowButtonDisabled: setFollowButtonDisabledActionCreate,
   getUsersThunkCreator,
   followThunkCreator,

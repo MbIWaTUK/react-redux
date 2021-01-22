@@ -9,7 +9,7 @@ import {
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    this.props.authThunkCreator();
+    // this.props.authThunkCreator();
   }
   render() {
     return <Header {...this.props} />;
@@ -26,7 +26,5 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  auth: setUserDataActionCreate,
-  authThunkCreator,
   logout: logoutThunkCreator,
 })(HeaderContainer);

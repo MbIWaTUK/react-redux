@@ -18,6 +18,10 @@ class ProfileContainerAPI extends React.Component {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
+      //redirect
+      if(!userId){
+        this.props.history.push("/login")
+      }
     }
     this.props.getUserProfileThunkCreator(userId);
     this.props.getStatus(userId);
